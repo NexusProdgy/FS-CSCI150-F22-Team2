@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     <script src="js/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 <body>
@@ -199,6 +200,12 @@
                         <label class="form-label" for="urlForm">Twitch URL</label>
 
                     </div>
+
+                    <form action="?" method="POST">
+                        <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+                        <br/>
+                        <input type="submit" value="Submit">
+                      </form>
 
                 </div>
 
