@@ -1,3 +1,0 @@
-This is the file for testing my git
-
-making some changes for git test
