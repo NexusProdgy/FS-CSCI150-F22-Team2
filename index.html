@@ -170,11 +170,45 @@
 
     </div>
 
-    <div>
+    <div class="modal fade" id="uploadModal" data-bs-target="#uploadModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
 
-        <div>
+        <div class="modal-dialog">
 
-            
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="uploadModalLabel">Upload Twitch Link</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-outline mb-4">
+
+                        <input type="text" id="uploadForm" class="form-control">
+                        <label class="form-label" for="uploadForm">Twitch Name</label>
+
+                    </div>
+
+                    <div class="form-outline mb-4">
+
+                        <input type="url"  id="urlForm" class="form-control">
+                        <label class="form-label" for="urlForm">Twitch URL</label>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+
+            </div>
 
         </div>
 
