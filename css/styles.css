@@ -29,3 +29,24 @@ body {
     margin: auto;
     display: block;
 }
+
+.features .row {
+    padding-top:12px; 
+    padding-bottom: 12px;
+}
+
+.features .row .col-lg-4 .card .card-body .btn {
+    color:#000;
+    background-color: #0bcf04;
+    border-color: #0bcf04;
+}
+
+.navbar .navbar-collapse .navbar-nav .nav-item .btn {
+    color:#000;
+    background-color: #0bcf04;
+    border-color: #0bcf04;
+}
+
+.navbar .navbar-collapse .navbar-nav .nav-item .btn:focus {
+    box-shadow: none;
+}
