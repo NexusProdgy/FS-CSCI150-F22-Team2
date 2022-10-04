@@ -41,6 +41,10 @@ body {
     border-color: #0bcf04;
 }
 
+.features .row .col-lg-4 .card:hover {
+    box-shadow: 4px 4px 13px #b36bd4;
+}
+
 .navbar .navbar-collapse .navbar-nav .nav-item .btn {
     color:#000;
     background-color: #0bcf04;
@@ -49,4 +53,20 @@ body {
 
 .navbar .navbar-collapse .navbar-nav .nav-item .btn:focus {
     box-shadow: none;
+}
+
+.card-body .btn-primary {
+    color:#000;
+    background-color: #0bcf04;
+    border-color: #0bcf04;
+}
+
+iframe {
+    margin: auto;
+    display: block;
+}
+
+.carousel .card-body {
+    margin: auto;
+    display: block;
 }
