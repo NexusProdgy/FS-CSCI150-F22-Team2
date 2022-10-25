@@ -50,6 +50,18 @@ async function scrape() {
   
 
 
+   const obj = {live: isLive, viewers: viewCount, cat: category, title: streamTitle, URL: link, name: streamerName}
+
+   const myJSON = JSON.stringify(obj)
+
+   const fs = require('fs')
+
+   var data = JSON.stringify(array)
+
+   
+   fs.writeFile('file.txt', myJSON, err => {if (err){ 
+    throw err} console.log(err)})
+
 
    browser.close()
 
