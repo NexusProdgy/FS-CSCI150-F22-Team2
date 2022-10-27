@@ -1,2 +1,2 @@
 {"URL":"https://www.twitch.tv/shroud"}
-{"live":"LIVE","viewers":"13,883","cat":"DayZ","title":"dayz chillin. - !gfuel !merch - @summit1g","URL":"https://www.twitch.tv/summit1g","name":"summit1g"}
+{"cat":"DayZ","title":"dayz chillin. - !gfuel !merch - @summit1g","URL":"https://www.twitch.tv/summit1g","name":"summit1g"}
