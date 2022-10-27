@@ -1,1 +1,1 @@
-{"live":"LIVE","viewers":"12,659","cat":"World of Warcraft","title":"PROT PALLY POV.","URL":"https://www.twitch.tv/summit1g","name":"shroud"}
+{"URL":"https://www.twitch.tv/shroud"}{"URL":"https://www.twitch.tv/summit1g"}
