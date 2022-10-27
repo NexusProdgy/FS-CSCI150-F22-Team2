@@ -41,9 +41,9 @@ async function scrape() {
        */
     
        //Scraping the stream category
-       //Maximum timeout time is 2.5 seconds
-       //If more than 2.5 seconds has passed, that means the streamer is not live -> error
-       var element3 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-nxg1ff-0.jYkTYc > div.Layout-sc-nxg1ff-0.bBfGll > div.Layout-sc-nxg1ff-0.jFPakw > div > div:nth-child(2) > div > div > div.Layout-sc-nxg1ff-0.FxhJR > a > span", {timeout: 2500})
+       //Maximum timeout time is N seconds
+       //If more than N seconds has passed, that means the streamer is not live -> error
+       var element3 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-nxg1ff-0.jYkTYc > div.Layout-sc-nxg1ff-0.bBfGll > div.Layout-sc-nxg1ff-0.jFPakw > div > div:nth-child(2) > div > div > div.Layout-sc-nxg1ff-0.FxhJR > a > span", {timeout: 3000})
        var category = await page.evaluate(element3 => element3.textContent, element3)
     
        //Scraping the stream title
@@ -53,14 +53,8 @@ async function scrape() {
        //Scraping the streamer name
        var element0 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-nxg1ff-0.jYkTYc > div.Layout-sc-nxg1ff-0.cuTDLl.metadata-layout__support > div.Layout-sc-nxg1ff-0.gcwIMz > a")
        var streamerName = await page.evaluate(element0 => element0.textContent, element0)
-   
-      } catch (error){
-   
-      }
-     
-   
-     
-   
+
+
       //console.log(isLive)
       //console.log(viewCount)
       console.log(category) //print the stream category to the console
@@ -69,17 +63,25 @@ async function scrape() {
       console.log(streamerName) //print the streamer name to the console
    
    
-      obj = {cat: category, title: streamTitle, URL: link, name: streamerName} //JSON format object
+      obj = {category: category, title: streamTitle, URL: link, name: streamerName} //JSON format object
    
       myJSON = JSON.stringify(obj) //creating the JSON to be sent to the database
-   
-      
+
+
+       
       //Writing the JSON to the output file
       //New entries will be appended to the file using newline
       fs.writeFile('output.txt', myJSON + '\n', {flag: 'a'}, err => {if (err){ 
-       throw err} console.log(err)})
-       
+         throw err} console.log(err)})
+         
    
+      } catch (error){
+   
+      }
+     
+   
+      
+     
 
 
    }

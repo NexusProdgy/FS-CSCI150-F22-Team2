@@ -1,5 +1,2 @@
-{"URL":"https://www.twitch.tv/shroud"}
-{"cat":"DayZ","title":"dayz chillin. - !gfuel !merch - @summit1g","URL":"https://www.twitch.tv/summit1g","name":"summit1g"}
-{"cat":"League of Legends","title":"road long short . purpose path venture through . UNSTOPPABLE CROSSED HAPPEN ! yellow . apple . box . sense common 195 IQ ALWAY ! SIR YES !!","URL":"https://www.twitch.tv/loltyler1","name":"loltyler1"}
-{"cat":"Madison","title":"FIRST TIME PLAYTHROUGH !tts !starforge !extension","URL":"https://www.twitch.tv/esfandtv","name":"EsfandTV"}
-{"cat":"Resident Evil 4","title":"🎃Resident Evil 4 with Yuria!🎃","URL":"https://www.twitch.tv/fextralife","name":"Fextralife"}
+{"category":"Overwatch 2","title":"NEW ! OLD YOUNG MILD ! ah no boneless and eat .  just wing all . LIMIT FACTOR POWER UP !! BEEP POW KAZOW !! huge like mountain swift lion !!","URL":"https://www.twitch.tv/loltyler1","name":"loltyler1"}
+{"category":"Just Chatting","title":"💰OTK LOOT GOBLINS EPISODE 3 💰","URL":"https://www.twitch.tv/esfandtv","name":"EsfandTV"}
