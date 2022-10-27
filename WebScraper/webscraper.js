@@ -34,7 +34,7 @@ async function scrape() {
        var viewCount = await page.evaluate(element2 => element2.textContent, element2)
        */
     
-       var element3 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-nxg1ff-0.jYkTYc > div.Layout-sc-nxg1ff-0.bBfGll > div.Layout-sc-nxg1ff-0.jFPakw > div > div:nth-child(2) > div > div > div.Layout-sc-nxg1ff-0.FxhJR > a > span", {timeout: 5000})
+       var element3 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-nxg1ff-0.jYkTYc > div.Layout-sc-nxg1ff-0.bBfGll > div.Layout-sc-nxg1ff-0.jFPakw > div > div:nth-child(2) > div > div > div.Layout-sc-nxg1ff-0.FxhJR > a > span", {timeout: 2500})
        var category = await page.evaluate(element3 => element3.textContent, element3)
     
        var element4 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-nxg1ff-0.jYkTYc > div.Layout-sc-nxg1ff-0.bBfGll > div.Layout-sc-nxg1ff-0.jFPakw > div > div.Layout-sc-nxg1ff-0.dRKpYM > h2")
