@@ -6,13 +6,7 @@ async function scrape() {
    const browser = await puppeteer.launch({})
    const page = await browser.newPage()
    const readStream = fs.createReadStream('urlFile.txt')
-   var writeStream = fs.createWriteStream('output.txt',{
-      flags: 'a'
-   })
   
-   fs.writeFile('file.txt', '', err => {if (err){ 
-      throw err} console.log(err)})
-
     
    fs.writeFile('output.txt', '', err => {if (err){ 
       throw err} console.log(err)})
@@ -64,13 +58,9 @@ async function scrape() {
       obj = {live: isLive, viewers: viewCount, cat: category, title: streamTitle, URL: link, name: streamerName}
    
       myJSON = JSON.stringify(obj)
-
-      /*
-      writeStream.write(myJSON)
-      */
    
       
-      fs.writeFile('file.txt', myJSON, {flag: 'a'}, err => {if (err){ 
+      fs.writeFile('output.txt', myJSON + '\n', {flag: 'a'}, err => {if (err){ 
        throw err} console.log(err)})
        
    
