@@ -2,6 +2,29 @@
 const puppeteer = require('puppeteer') //include puppeteer module
 const fs = require('fs') //include filestream module
 const readline = require('readline') //include readline module
+const mysql = require('mysql') //include mysql module
+
+var connection = mysql.createConnection({
+
+   host: '', //will need IP of machine database is located on
+   user: 'root', //user is root by default
+   password: '', //password is empty string by default
+   database: '' //will need the name of the database
+
+
+});
+
+connection.connect(function (err){
+
+   if(err){
+      console.error("Connection failure")
+
+   }else{
+      console.log("Connection success")
+
+   }
+
+});
 
 //Web Scraper Function
 async function scrape() {
