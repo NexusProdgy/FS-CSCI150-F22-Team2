@@ -48,6 +48,10 @@ async function scrape() {
    const readStream = fs.createReadStream('urlFile.txt') //creating a read stream from a given input file
    const uri = "mongodb+srv://webscraper:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority"; //connection URI to database
    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); //create instance of MongoClient using our URI
+
+   const database = client.db("testDB");
+   const testCollection = database.collection("test")
+   /*
    client.connect(function (err){
 
       if(err){
@@ -57,6 +61,7 @@ async function scrape() {
       }
    
    });
+   */
    
    
   
@@ -115,6 +120,8 @@ async function scrape() {
    
    
       obj = {category: category, title: streamTitle, URL: link, name: streamerName} //JSON format object
+
+      var data = {category: "test"}
    
       myJSON = JSON.stringify(obj) //creating the JSON to be sent to the database
 
@@ -122,13 +129,42 @@ async function scrape() {
        
       //Writing the JSON to the output file
       //New entries will be appended to the file using newline
+      /*
       fs.writeFile('output.txt', myJSON + '\n', {flag: 'a'}, err => {if (err){ 
          throw err} console.log(err)})
+      */
+
+         client.connect(function (err){
+
+            if(err){
+               console.error("Connection Error");
+            }else{
+               console.error("Connected");
+
+
+
+               testCollection.insertOne(data, function (err){
+                  if(err){
+                     console.log("Insert error")
+                     
+                  }else{
+                     console.log("insert success")
+                  }
+                  
+               });
+               
+            }
+            client.close(); //close the MongoClient instance
+         
+         });
+
          
    
       } catch (error){
+
    
       }
+
      
    
       
