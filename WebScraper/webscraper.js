@@ -2,7 +2,43 @@
 const puppeteer = require('puppeteer') //include puppeteer module
 const fs = require('fs') //include filestream module
 const readline = require('readline') //include readline module
+const {MongoClient} = require('mongodb') //include mongodb module
 
+//const uri = "mongodb+srv://webscraper:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority"; //connection URI to database
+//const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); //create instance of MongoClient using our URI
+
+
+
+//Connect to database using basic if statement
+//I'm using this implementation for now as it displays connection status
+/*
+client.connect(function (err){
+
+   if(err){
+      console.error("Connection Error");
+   }else{
+      console.error("Connected");
+   }
+
+});
+
+client.close();
+*/
+
+
+
+//Connect to database using try catch block
+/*
+try {
+   client.connect();
+
+
+} catch (err){
+   console.error("Connection Error");
+};
+
+client.close();
+*/
 
 
 //Web Scraper Function
@@ -10,6 +46,19 @@ async function scrape() {
    const browser = await puppeteer.launch({}) //create a new web browser instance
    const page = await browser.newPage() //create page variable that will be used to navigate to Twitch.tv web page
    const readStream = fs.createReadStream('urlFile.txt') //creating a read stream from a given input file
+   const uri = "mongodb+srv://webscraper:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority"; //connection URI to database
+   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); //create instance of MongoClient using our URI
+   client.connect(function (err){
+
+      if(err){
+         console.error("Connection Error");
+      }else{
+         console.error("Connected");
+      }
+   
+   });
+   
+   
   
    //Truncating the output file to delete previous data
    //Using asynchronous writeFile function
@@ -91,6 +140,7 @@ async function scrape() {
 
 
    browser.close() //close the web browser instance
+   client.close(); //close the MongoClient instance
 
 
    
