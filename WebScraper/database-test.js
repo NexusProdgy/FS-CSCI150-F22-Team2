@@ -6,25 +6,27 @@ const {MongoClient} = require('mongodb') //include mongodb module
 
 const uri = "mongodb+srv://webscraper:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority"; //connection URI to database
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); //create instance of MongoClient using our URI
-const database = client.db("TestDatabase");
+const database = client.db("TestDatabase"); //the database we are connecting to
 var testCollection = database.collection("TestCollection")
 
+//test function that inserts into the database
 async function insert(){
 
-    client.connect(function(err){
-        if(err) throw err;
+    client.connect(function(err){ //connecting the database
+        if(err) throw err; //if can't connect then throw error
 
-        var myData = {category: "Test", title: "Test Stream", URL: "twitch.tv", name: "Test1"};
-        database.collection("TestCollection").insertOne(myData, function(err){
-            if(err) throw err
-            console.log("Insert Success")
+        var myData = {category: "Test", title: "Test Stream", URL: "twitch.tv", name: "Test1"}; //test data to insert
+        database.collection("TestCollection").insertOne(myData, function(err){ //insert into a specific collection in the database
+            if(err) throw err //if can't insert then throw error
+            console.log("Insert Success") //if insert was success display message
+            client.close(); //close the connection
         });
 
 
     });
 
 
-    client.close();
+
 };
 
 insert();

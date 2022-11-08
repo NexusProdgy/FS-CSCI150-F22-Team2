@@ -10,7 +10,6 @@ const {MongoClient} = require('mongodb') //include mongodb module
 
 
 //Connect to database using basic if statement
-//I'm using this implementation for now as it displays connection status
 /*
 client.connect(function (err){
 
@@ -41,6 +40,28 @@ client.close();
 */
 
 
+//Connect to the database and insert data
+//I'm using this implementation as it works
+//Further testing may be needed
+/*
+client.connect(function(err){
+   if(err) throw err;
+
+   
+   //var myData = {category: "Test", title: "Test Stream", URL: "twitch.tv", name: "Test1"};
+   database.collection("TestCollection").insertOne(data, function(err){
+       if(err) throw err
+       console.log("Insert Success")
+       client.close();
+   });
+   
+
+   //client.close();
+
+});
+*/
+
+
 //Web Scraper Function
 async function scrape() {
    const browser = await puppeteer.launch({}) //create a new web browser instance
@@ -49,7 +70,7 @@ async function scrape() {
    const uri = "mongodb+srv://webscraper:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority"; //connection URI to database
    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); //create instance of MongoClient using our URI
 
-   const database = client.db("TestDatabase");
+   const database = client.db("TestDatabase"); //database we are connecting to
    var testCollection = database.collection("TestCollection")
    /*
    client.connect(function (err){
@@ -126,15 +147,15 @@ async function scrape() {
       myJSON = JSON.stringify(obj) //creating the JSON to be sent to the database
 
 
-      client.connect(function(err){
-         if(err) throw err;
+      client.connect(function(err){ //connect to the database
+         if(err) throw err; //if we can't connect then throw error
  
          
          //var myData = {category: "Test", title: "Test Stream", URL: "twitch.tv", name: "Test1"};
-         database.collection("TestCollection").insertOne(data, function(err){
-             if(err) throw err
-             console.log("Insert Success")
-             client.close();
+         database.collection("TestCollection").insertOne(data, function(err){ //insert the stream properties into the database
+             if(err) throw err //if we can't insert then throw error
+             console.log("Insert Success") //the insert was successful
+             client.close(); //close the connection to the database
          });
          
  
