@@ -49,8 +49,8 @@ async function scrape() {
    const uri = "mongodb+srv://webscraper:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority"; //connection URI to database
    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); //create instance of MongoClient using our URI
 
-   const database = client.db("testDB");
-   const testCollection = database.collection("test")
+   const database = client.db("TestDatabase");
+   var testCollection = database.collection("TestCollection")
    /*
    client.connect(function (err){
 
@@ -121,9 +121,26 @@ async function scrape() {
    
       obj = {category: category, title: streamTitle, URL: link, name: streamerName} //JSON format object
 
-      var data = {category: "test"}
+      var data = {category: category, title: streamTitle, URL: link, name: streamerName}
    
       myJSON = JSON.stringify(obj) //creating the JSON to be sent to the database
+
+
+      client.connect(function(err){
+         if(err) throw err;
+ 
+         
+         //var myData = {category: "Test", title: "Test Stream", URL: "twitch.tv", name: "Test1"};
+         database.collection("TestCollection").insertOne(data, function(err){
+             if(err) throw err
+             console.log("Insert Success")
+             client.close();
+         });
+         
+ 
+         //client.close();
+ 
+      });
 
 
        
@@ -133,7 +150,7 @@ async function scrape() {
       fs.writeFile('output.txt', myJSON + '\n', {flag: 'a'}, err => {if (err){ 
          throw err} console.log(err)})
       */
-
+         /*
          client.connect(function (err){
 
             if(err){
@@ -142,7 +159,7 @@ async function scrape() {
                console.error("Connected");
 
 
-
+               
                testCollection.insertOne(data, function (err){
                   if(err){
                      console.log("Insert error")
@@ -153,10 +170,13 @@ async function scrape() {
                   
                });
                
+               
             }
             client.close(); //close the MongoClient instance
          
          });
+         */
+         
 
          
    
@@ -176,7 +196,7 @@ async function scrape() {
 
 
    browser.close() //close the web browser instance
-   client.close(); //close the MongoClient instance
+   //client.close(); //close the MongoClient instance
 
 
    
