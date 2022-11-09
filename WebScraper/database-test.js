@@ -29,4 +29,57 @@ async function insert(){
 
 };
 
-insert();
+//insert();
+
+
+async function read(){
+
+
+
+
+    /*
+    client.connect(function(err){ //connecting the database
+        if(err) throw err; //if can't connect then throw error
+
+        database.collection("TestCollection").find({}).toArray(function(err,item){
+            if(err) throw err
+            console.log(item);
+            client.close();
+        });
+
+
+    });
+    */
+
+    /*
+
+    database.collection("TestCollection").find({}).toArray(function(err,item){
+        if(err) throw err
+        console.log(item);
+        client.close();
+    });
+    */
+   
+   var projection = {_id: 0}
+   var cursor = database.collection("TestCollection").find({}).project(projection)
+   var data
+
+   for await(const item of cursor){
+
+        data = item
+        console.log(data);
+
+   }
+
+
+   await cursor.close();
+   client.close();
+
+
+       
+
+
+
+};
+
+read();

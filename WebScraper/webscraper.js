@@ -100,9 +100,14 @@ async function scrape() {
       crlfDelay : Infinity
    })
 
+
+   var projection = {_id: 0, URL: 1}
+   var cursor = database.collection("URLCollection").find({}).project(projection)
+
+
    //For each URL in the input file, scrape the stream properties we need and write them to the output file
-   for await (const line of readLine){
-      var link = line //the URL from the input file becomes the link that the variable page uses to navigate
+   for await (const item of cursor){
+      var link = item.URL //the URL from the input file becomes the link that the variable page uses to navigate
 
       //Try catch block
       //If the streamer is not live then return an error
@@ -151,12 +156,13 @@ async function scrape() {
          if(err) throw err; //if we can't connect then throw error
  
          
-         //var myData = {category: "Test", title: "Test Stream", URL: "twitch.tv", name: "Test1"};
+         
          database.collection("TestCollection").insertOne(data, function(err){ //insert the stream properties into the database
              if(err) throw err //if we can't insert then throw error
              console.log("Insert Success") //the insert was successful
              client.close(); //close the connection to the database
          });
+         
          
  
          //client.close();
@@ -217,6 +223,8 @@ async function scrape() {
 
 
    browser.close() //close the web browser instance
+   await cursor.close();
+   client.close();
    //client.close(); //close the MongoClient instance
 
 
