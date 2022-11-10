@@ -88,6 +88,7 @@ async function scrape() {
   
    //Truncating the output file to delete previous data
    //Using asynchronous writeFile function
+   /*
    fs.writeFile('output.txt', '', err => {if (err){ 
       throw err} console.log(err)})
          
@@ -99,6 +100,7 @@ async function scrape() {
       input: readStream,
       crlfDelay : Infinity
    })
+   */
 
 
    var projection = {_id: 0, URL: 1}
@@ -223,8 +225,8 @@ async function scrape() {
 
 
    browser.close() //close the web browser instance
-   await cursor.close();
-   client.close();
+   await cursor.close(); //close the cursor when we are done with it
+   client.close(); //close the MongoClinet Instance
    //client.close(); //close the MongoClient instance
 
 
