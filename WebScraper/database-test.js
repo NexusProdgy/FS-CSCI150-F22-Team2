@@ -10,13 +10,16 @@ const database = client.db("TestDatabase"); //the database we are connecting to
 var testCollection = database.collection("TestCollection")
 
 //test function that inserts into the database
+//Using it to test URLCollection
+var link = "https://www.twitch.tv/gamergirl"
+
 async function insert(){
 
     client.connect(function(err){ //connecting the database
         if(err) throw err; //if can't connect then throw error
 
-        var myData = {category: "Test", title: "Test Stream", URL: "twitch.tv", name: "Test1"}; //test data to insert
-        database.collection("TestCollection").insertOne(myData, function(err){ //insert into a specific collection in the database
+        var myData = {URL: link}; //test data to insert
+        database.collection("URLCollection").insertOne(myData, function(err){ //insert into a specific collection in the database
             if(err) throw err //if can't insert then throw error
             console.log("Insert Success") //if insert was success display message
             client.close(); //close the connection
@@ -26,10 +29,9 @@ async function insert(){
     });
 
 
-
 };
 
-//insert();
+
 
 
 async function read(){
@@ -61,7 +63,7 @@ async function read(){
     */
    
    var projection = {_id: 0}
-   var cursor = database.collection("TestCollection").find({}).project(projection)
+   var cursor = database.collection("URLCollection").find({}).project(projection)
    var data
 
    for await(const item of cursor){
@@ -82,4 +84,5 @@ async function read(){
 
 };
 
+//insert();
 read();

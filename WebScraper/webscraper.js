@@ -107,7 +107,7 @@ async function scrape() {
    var cursor = database.collection("URLCollection").find({}).project(projection)
 
 
-   //For each URL in the input file, scrape the stream properties we need and write them to the output file
+   //For each URL in the URLCollection of the Database, scrape the stream properties we need and insert them into a Collection in the Database
    for await (const item of cursor){
       var link = item.URL //the URL from the input file becomes the link that the variable page uses to navigate
 
@@ -127,7 +127,7 @@ async function scrape() {
        //Scraping the stream category
        //Maximum timeout time is N seconds
        //If more than N seconds has passed, that means the streamer is not live -> error
-       var element3 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-nxg1ff-0.jYkTYc > div.Layout-sc-nxg1ff-0.bBfGll > div.Layout-sc-nxg1ff-0.jFPakw > div > div:nth-child(2) > div > div > div.Layout-sc-nxg1ff-0.FxhJR > a > span", {timeout: 2850})
+       var element3 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-nxg1ff-0.jYkTYc > div.Layout-sc-nxg1ff-0.bBfGll > div.Layout-sc-nxg1ff-0.jFPakw > div > div:nth-child(2) > div > div > div.Layout-sc-nxg1ff-0.FxhJR > a > span", {timeout: 2900})
        var category = await page.evaluate(element3 => element3.textContent, element3)
     
        //Scraping the stream title
