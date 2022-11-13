@@ -236,3 +236,4 @@ async function scrape() {
 //Web Scraper Function Call
 //Prints error (if any) to the terminal
 scrape().catch(console.error)
+
