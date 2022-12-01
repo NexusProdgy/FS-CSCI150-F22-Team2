@@ -16,7 +16,7 @@
 
     <nav class="navbar navbar-expand-md">
             <a class="navbar-brand" href="#">Logo</a>
-            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-target="#main-navigation">
+            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 

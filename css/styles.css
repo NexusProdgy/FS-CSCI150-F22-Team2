@@ -33,6 +33,7 @@ body {
 .features .row {
     padding-top:12px; 
     padding-bottom: 12px;
+    --bs-gutter-y: 1.5rem;
 }
 
 .features .row .col-lg-4 .card .card-body .btn {
