@@ -10,7 +10,6 @@ const database = client.db("TestDatabase"); //database we are connecting to
 async function scrape(client) {
     const browser = await puppeteer.launch({}) //create a new web browser instance
     const page = await browser.newPage() //create page variable that will be used to navigate to Twitch.tv web page
-   26662
     /*
     client.connect(function (err){
  
