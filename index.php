@@ -75,241 +75,53 @@
 </div>
 
 <div class="container features">
-
 <div class="row">
+<?php
 
-    <div class="col-lg-4 col-md-4 col-sm-12">
+    $servername = "localhost"; 
+    $username = "root"; 
+    $password = ""; 
+    $dbname = "TestAgainDB"; 
 
-        <div class="card">
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    if(!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
-            <div class="card-body">
+    $sql = "SELECT stream_id, stream_name, stream_game, stream_url FROM Streams_Table ORDER BY rand()";
+    $result = mysqli_query($conn, $sql); 
 
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
+    if(mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
             
-          </div>
 
-    </div>
+            echo '<div class="col-lg-4 col-md-4 col-sm-12">';
+        
+                echo '<div class="card">';
+        
+                    echo '<iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        
+                    echo '<div class="card-body">';
+        
+                      echo '<h5 class="card-title">'.$row["stream_name"].'</h5>';
+                      echo '<p class="card-text">'.$row["stream_game"].'</p>';
+                      echo '<a href="'.$row["stream_url"].'" class="btn btn-primary">Go to channel</a>';
 
-    <div class="col-lg-4 col-md-4 col-sm-12">
+                    echo '</div>';
+                    
+                  echo '</div>';
+        
+            echo '</div>';
+        
+        }
+    }
+    else {
+        echo "0 results"; 
+    }
 
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-            
-          </div>
-
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-            
-          </div>
-
-    </div>
-
+?>
 </div>
-
-<div class="row">
-
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-            
-          </div>
-
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-            
-          </div>
-
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-            
-          </div>
-
-    </div>
-
-</div>
-
-<div class="row">
-
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-            
-          </div>
-
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-            
-          </div>
-
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-            
-          </div>
-
-    </div>
-
-</div>
-
-<div class="row">
-
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-            
-          </div>
-
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-            
-          </div>
-
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-12">
-
-        <div class="card">
-
-            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            <div class="card-body">
-
-              <h5 class="card-title">Twitch Channel Name</h5>
-              <p class="card-text">Description/Game</p>
-              <a href="#" class="btn btn-primary">Go to channel</a>
-
-            </div>
-
-          </div>
-
-    </div>
-
-</div>
-
-</div>
-
 <div class="modal fade" id="uploadModal" data-bs-target="#uploadModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
 
 <div class="modal-dialog">
