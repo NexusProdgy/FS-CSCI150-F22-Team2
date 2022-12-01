@@ -8,18 +8,17 @@
 
               <div class="col-md-6">
 
-                <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <img src="https://blog.gfuel.com/hubfs/xqc-felix-lengyel.jpg" alt="Simply Easy Learning" width="285" height="275">
+                      </div>
 
-              </div>
+                      <div class="col-md-6">
 
-              <div class="col-md-6">
+                        <div class="card-body">
 
-                <div class="card-body">
-
-                  <h5 class="card-title">Twitch Channel Name</h5>
-                  <p class="card-text">Description/Games</p>
-                  <p class="card-text"><small class="text-muted">Viewer Count?</small></p>
-                  <a href="#" class="btn btn-primary">Go to channel</a>
+                          <h5 class="card-title">Limelight HOF</h5>
+                          <p class="card-text">XQC</p>
+                          <p class="card-text"><small class="text-muted">Limelight increased my by views 50% ~XQC</small></p>
+                          <a href="#" class="btn btn-primary">Go to channel</a>
 
                 </div>
 
@@ -39,18 +38,17 @@
 
               <div class="col-md-6">
 
-                <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <img src="https://blog.gfuel.com/hubfs/xqc-felix-lengyel.jpg" alt="Simply Easy Learning" width="285" height="275">
+                      </div>
 
-              </div>
+                      <div class="col-md-6">
 
-              <div class="col-md-6">
+                        <div class="card-body">
 
-                <div class="card-body">
-
-                  <h5 class="card-title">Twitch Channel Name</h5>
-                  <p class="card-text">Description/Games</p>
-                  <p class="card-text"><small class="text-muted">Viewer Count?</small></p>
-                  <a href="#" class="btn btn-primary">Go to channel</a>
+                          <h5 class="card-title">Limelight HOF</h5>
+                          <p class="card-text">XQC</p>
+                          <p class="card-text"><small class="text-muted">Limelight increased my by views 50% ~XQC</small></p>
+                          <a href="#" class="btn btn-primary">Go to channel</a>
 
                 </div>
 
