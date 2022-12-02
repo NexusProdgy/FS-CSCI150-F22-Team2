@@ -10,7 +10,11 @@ const database = client.db("TestDatabase"); //the database we are connecting to
 var testCollection = database.collection("URLCollection")
 
 
-
+const categoryList = [];
+categoryList.push("League of Legends")
+categoryList.push("VALORANT")
+categoryList.push("Overwatch 2")
+categoryList.push("Just Chatting")
 
 
 

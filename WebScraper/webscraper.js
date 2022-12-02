@@ -61,6 +61,12 @@ client.connect(function(err){
 });
 */
 
+const categoryList = [];
+categoryList.push("League of Legends")
+categoryList.push("VALORANT")
+categoryList.push("Overwatch 2")
+categoryList.push("Just Chatting")
+
 
 //Web Scraper Function
 async function scrape() {
@@ -211,7 +217,8 @@ async function scrape() {
    
       } catch (error){
 
-   
+
+
       }
 
      
