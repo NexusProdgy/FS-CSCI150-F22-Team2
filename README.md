@@ -21,7 +21,7 @@ The website will be similar to Twitch; however, there will be a huge difference 
 
 1.5 General Description  
 
-A platform that promotes and advertises for small Twitch streamers (2-50 subscribers). The website will have a main page that gathers the users preferences in content, after gathering this information,  the user will be lead to another page that contains links to the streamers twitch account. At the bare minimum this website will be a fully functional website with the functions of filtering content creators by category, and promoting their accounts on a display page. If we accomplish this, some add-on features we would like to include if possible are: 
+A platform that promotes and advertises for small Twitch streamers (0-100 concurent viewers). The website will have a main page that gathers the users preferences in content, after gathering this information,  the user will be lead to another page that contains links to the streamers twitch account. At the bare minimum this website will be a fully functional website with the functions of filtering content creators by category, and promoting their accounts on a display page. If we accomplish this, some add-on features we would like to include if possible are: 
 a featured/hot list that displays trending streamers gaining the most traffic. 
 a 'Like/dislike’ button that can be applied to better provide desired content.
 a profile feature where a user can create an account that is linked to all their data. 
