@@ -1,6 +1,34 @@
-<?php 
-  
+<div class="modal fade" id="uploadModal" data-bs-target="#uploadModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+            <h5 class="modal-title" id="uploadModalLabel">Upload Twitch Link</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+                <div class="modal-body">
+
+                    <div class="form-outline mb-4">
+                        <form onsubmit="alert('sucess');" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+                        <input type="text" name="fname" class="form-control" placeholder="TwitchURL">
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <input type="submit"  value="submit" class="btn btn-secondary">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+        </div>
+    </div>
+</div>
+
+<?php
+//mongodb connection script
+if ($_SERVER["REQUEST_METHOD"] == "POST") { //check if it is server get request or post request
+
   require_once "vendor/autoload.php";
+
+    $name=$_POST['fname']; //get the input value of the url inputted
+    if(str_contains($name,'twitch.tv')){ //if it has twitch.tv open mongodb and upload
 
   $client = new MongoDB\Client(
     'mongodb+srv://website:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority');
@@ -14,53 +42,34 @@
   
 
   $insertOneResult = $collection->insertOne([
-      'URL' => ""
+      'URL' => $name
   ]);
-
-
-
+  echo $name;
+}
+else{
+    echo 'twitch.tv was not found';
+}
+}
 ?>
 
-<div class="modal fade" id="uploadModal" data-bs-target="#uploadModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+<script>
+function checkstring()
+{
+var urlvale=document.getElementById("fname").value;
+var errchange=document.getElementById("error");
+    let data=urlvale
+    let result=data.includes("twitch.tv")
+    if(result==false)
+    {
+    errchange.innerText="Please submit a twitch.tv link"
+    errchange.style.color="red"
+    }
+    else
+    {
+    errchange.innerText="thank you, your link has been accepted"
+    errchange.style.color="green"
+    }
 
-<div class="modal-dialog">
-
-    <div class="modal-content">
-
-        <div class="modal-header">
-
-            <h5 class="modal-title" id="uploadModalLabel">Upload Twitch Link</h5>
-
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-        </div>
-
-        <div class="modal-body">
-
-            <div class="form-outline mb-4">
-
-                <input type="url" required id="urlForm" class="form-control" name="twitchURL" placeholder="Twitch URL">
-
-            </div>
-
-            <!--<form action="?" method="POST">
-                <div class="g-recaptcha" data-sitekey="your_site_key"></div>
-                <br/>
-                <input type="submit" value="Submit">
-              </form>-->
-
-        </div>
-
-        <div class="modal-footer">
-
-            <button type="button" class="btn btn-secondary">Submit</button>
-
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-        </div>
-
-    </div>
-
-</div>
-
+}
+</script>
 </div>
