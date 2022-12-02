@@ -76,95 +76,37 @@
 
 <div class="container features">
 <div class="row">
-<?php
 
-    $servername = "localhost"; 
-    $username = "root"; 
-    $password = ""; 
-    $dbname = "TestAgainDB"; 
 
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+<?php 
+  
+  require_once "vendor/autoload.php";
 
-    if(!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+  $client = new MongoDB\Client(
+    'mongodb+srv://website:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority');
 
-    $sql = "SELECT stream_id, stream_name, stream_game, stream_url FROM Streams_Table ORDER BY rand()";
-    $result = mysqli_query($conn, $sql); 
+  $db = $client->TestDatabase;
 
-    if(mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            
+  $collection = $db->TestCollection;
 
-            echo '<div class="col-lg-4 col-md-4 col-sm-12">';
-        
-                echo '<div class="card">';
-        
-                    echo '<iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-        
-                    echo '<div class="card-body">';
-        
-                      echo '<h5 class="card-title">'.$row["stream_name"].'</h5>';
-                      echo '<p class="card-text">'.$row["stream_game"].'</p>';
-                      echo '<a href="'.$row["stream_url"].'" class="btn btn-primary">Go to channel</a>';
-
-                    echo '</div>';
-                    
-                  echo '</div>';
-        
-            echo '</div>';
-        
-        }
-    }
-    else {
-        echo "0 results"; 
-    }
+  $cursor = $collection->find();
+    
+  foreach($cursor as $document) {
+    echo "<div class='col-lg-4 col-md-4 col-sm-12'>";
+      echo "<div class='card'>";
+        echo "<div class='card-body'>";
+          echo "<h5 class='card-title'>" . $document["title"] . "</h5>";
+          echo "<p class='card-text'>" . $document["category"] ."</p>";
+          echo "<a href='" . $document["URL"] . "' target= '_blank' class='btn btn-primary'>" . $document["name"] . " - Channel" . "</a>";
+        echo "</div>"; 
+      echo "</div>"; 
+    echo "</div>";
+  }
 
 ?>
-</div>
-<div class="modal fade" id="uploadModal" data-bs-target="#uploadModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
-
-<div class="modal-dialog">
-
-    <div class="modal-content">
-
-        <div class="modal-header">
-
-            <h5 class="modal-title" id="uploadModalLabel">Upload Twitch Link</h5>
-
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-        </div>
-
-        <div class="modal-body">
-
-            <div class="form-outline mb-4">
-
-                <input type="url"  id="urlForm" class="form-control" placeholder="Twitch URL">
-
-            </div>
-
-            <!--<form action="?" method="POST">
-                <div class="g-recaptcha" data-sitekey="your_site_key"></div>
-                <br/>
-                <input type="submit" value="Submit">
-              </form>-->
-
-        </div>
-
-        <div class="modal-footer">
-
-            <button type="button" class="btn btn-secondary" onclick="saveFile()">Submit</button>
-
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-        </div>
-
-    </div>
 
 </div>
 
-</div>
-
+<?php include('form.php');?>
 
 <?php include('footer.php');?>

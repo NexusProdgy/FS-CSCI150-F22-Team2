@@ -15,7 +15,7 @@
 <body>
 
     <nav class="navbar navbar-expand-md">
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="#"><img id="logo" src="https://media.discordapp.net/attachments/1016851958893662211/1047960231797334099/12.png?width=50&height=50"></a>
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
