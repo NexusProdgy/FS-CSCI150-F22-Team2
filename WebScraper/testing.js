@@ -21,3 +21,12 @@ if(cat == "Just Chatting"){
 }else{
     console.log(false);
 }
+
+
+if(categoryList.includes("JustChatting")){
+    console.log(categoryList.includes("JustChatting"));
+}else{
+    console.log(categoryList.includes("JustChatting"));
+}
+
+console.log("Hello", "World")
