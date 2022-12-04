@@ -9,13 +9,12 @@
                 <div class="modal-body">
 
                     <div class="form-outline mb-4">
-                        <form onsubmit="alert('sucess');" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-                        <input type="text" name="fname" class="form-control" placeholder="TwitchURL">
+                        <form onsubmit="alert('Thank you! Your link has been submitted');" method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+                        <input type="text" name="fname" class="form-control" placeholder="TwitchURL" maxlength="40">
                     </div>
                 </div>
             <div class="modal-footer">
                 <input type="submit"  value="submit" class="btn btn-secondary">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </form>
         </div>
     </div>
@@ -69,6 +68,7 @@ var errchange=document.getElementById("error");
     errchange.innerText="thank you, your link has been accepted"
     errchange.style.color="green"
     }
+    return alert('sucess')
 
 }
 </script>
