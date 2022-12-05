@@ -90,9 +90,7 @@ Some of the software components our product interacts with are numerous, one of 
 	
   Some of the quality attributes our product strives for our users is availability and simplicity. We want our product to be available any time, any where, and on any device with a web browser. The other attribute our product strives for is simplicity for the users to navigate our product.
 
-5.5 Business Rules
-	
-  We currently do not have any business rules we abide by but if some were to pop up they would be added as needed.
+ Project board link https://github.com/users/NexusProdgy/projects/1
 
 
 
