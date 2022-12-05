@@ -43,10 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //check if it is server get request 
   $insertOneResult = $collection->insertOne([
       'URL' => $name
   ]);
-  echo $name;
+  echo '<script> alert("'. $name .' was found")</script>';
 }
 else{
-    echo '<script>alert("twitch.tv was not found")</script>';
+    echo '<script> alert("twitch.tv was not found")</script>';
 }
 }
 ?>
