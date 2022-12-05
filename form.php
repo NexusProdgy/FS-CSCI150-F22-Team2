@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //check if it is server get request 
   echo $name;
 }
 else{
-    echo 'twitch.tv was not found';
+    echo '<script>alert("twitch.tv was not found")</script>';
 }
 }
 ?>

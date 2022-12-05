@@ -10,6 +10,7 @@
     <script src="js/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="icon" type="image/png" href="https://media.discordapp.net/attachments/1016851958893662211/1047960231797334099/12.png?width=50&height=50">
 
 </head>
 <body>
@@ -28,8 +29,8 @@
                             Browse
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="games.html">Games</a></li>
-                            <li><a class="dropdown-item" href="#">IRL</a></li>
+                            <li><a class="dropdown-item" href="index.php">Games</a></li>
+                            <li><a class="dropdown-item" href="justchatting.php">IRL</a></li>
                             </ul>
                         </div>
                     </li>
@@ -40,37 +41,5 @@
             </div>
         </nav>
 
-        <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
-
-<div class="carousel-inner">
-
-    <div class="carousel-item active">
-
-        <div class="card mb-3">
-
-            <div class="row g-0">
-
-              <div class="col-md-6">
-
-                <iframe src="https://www.youtube.com/embed/pWahNIMRxR0" title="No copyright video cinematic" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-
-              <div class="col-md-6">
-
-                <div class="card-body">
-
-                  <h5 class="card-title">Twitch Channel Name</h5>
-                  <p class="card-text">Description/Games</p>
-                  <p class="card-text"><small class="text-muted">Viewer Count?</small></p>
-                  <a href="#" class="btn btn-primary">Go to channel</a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-        </div>
-
-    </div>
+        
 
