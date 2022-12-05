@@ -13,6 +13,11 @@ console.log(categoryList[3]);
 var found = categoryList.includes("World of Warcraft");
 
 var cat = "Just Chatting"
+var cat3 = "Minecraft"
+console.log(cat);
+//var cat2 = cat.replace('/\s+g', '');
+var cat2 = cat3.split(" ").join("")
+console.log(cat2);
 
 console.log(found);
 

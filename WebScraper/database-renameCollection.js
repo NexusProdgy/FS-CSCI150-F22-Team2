@@ -24,7 +24,7 @@ async function rename(){
     client.connect(function(err){
         if(err) throw err; //if can't connect then throw error
 
-        database.collection("OverWatch2").rename("Overwatch 2", function(err){
+        database.collection("World of Warcraft").rename("WorldofWarcraft", function(err){
             if(err) throw err
 
             client.close();

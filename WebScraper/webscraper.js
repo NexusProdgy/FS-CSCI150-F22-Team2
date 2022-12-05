@@ -163,14 +163,14 @@ async function scrape() {
 
          //myJSON = JSON.stringify(obj) //creating the JSON to be sent to the database
 
-
+         var dbcategory = category.split(" ").join("");
 
          client.connect(function(err){ //connect to the database
             if(err) throw err; //if we can't connect then throw error
     
             
             
-            database.collection(category).insertOne(data, function(err){ //insert the stream properties into the database
+            database.collection(dbcategory).insertOne(data, function(err){ //insert the stream properties into the database
                 if(err) throw err //if we can't insert then throw error
                 console.log("Insert Success") //the insert was successful
                 client.close(); //close the connection to the database
