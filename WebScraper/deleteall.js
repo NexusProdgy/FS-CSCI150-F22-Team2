@@ -2,6 +2,7 @@ const {MongoClient} = require('mongodb') //include mongodb module
 
 //username: webscraper
 //password: csci150
+//test
 
 
 const uri = "mongodb+srv://webscraper:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority"; //connection URI to database
