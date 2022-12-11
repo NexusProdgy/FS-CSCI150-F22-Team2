@@ -118,6 +118,7 @@ async function scrape() {
    //For each URL in the URLCollection of the Database, scrape the stream properties we need and insert them into a Collection in the Database
    for await (const item of cursor){
       var link = item.URL //the URL from the input file becomes the link that the variable page uses to navigate
+      var dblink = {URL: link}
 
       //Try catch block
       //If the streamer is not live then return an error
@@ -176,8 +177,16 @@ async function scrape() {
             database.collection(dbcategory).insertOne(data, function(err){ //insert the stream properties into the database
                 if(err) throw err //if we can't insert then throw error
                 console.log("Insert Success") //the insert was successful
-                client.close(); //close the connection to the database
+                //client.close(); //close the connection to the database
             });
+
+
+            database.collection("VerifiedURLCollection").deleteOne(dblink, function(err){
+               if(err) throw err
+               console.log("Delete Success")
+               client.close();
+
+           });
             
             
     
@@ -188,6 +197,12 @@ async function scrape() {
        }else{
 
          console.log("Error:", "URL:", link, ",Category:", category, "Is not in database");
+         database.collection("VerifiedURLCollection").deleteOne(dblink, function(err){
+            if(err) throw err
+            console.log("Delete Success")
+            client.close();
+
+        });
        }
 
 
@@ -229,6 +244,13 @@ async function scrape() {
          
    
       } catch (error){
+         console.log("Error:", "URL:", link, ",Stream is not live");
+         database.collection("VerifiedURLCollection").deleteOne(dblink, function(err){
+            if(err) throw err
+            console.log("Delete Success")
+            client.close();
+
+        });
 
 
 
