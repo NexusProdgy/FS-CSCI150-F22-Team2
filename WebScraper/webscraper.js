@@ -1,7 +1,5 @@
 //Adding External Node.js Modules
 const puppeteer = require('puppeteer') //include puppeteer module
-const fs = require('fs') //include filestream module
-const readline = require('readline') //include readline module
 const {MongoClient} = require('mongodb') //include mongodb module
 
 //const uri = "mongodb+srv://webscraper:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority"; //connection URI to database
@@ -40,26 +38,7 @@ client.close();
 */
 
 
-//Connect to the database and insert data
-//I'm using this implementation as it works
-//Further testing may be needed
-/*
-client.connect(function(err){
-   if(err) throw err;
 
-   
-   //var myData = {category: "Test", title: "Test Stream", URL: "twitch.tv", name: "Test1"};
-   database.collection("TestCollection").insertOne(data, function(err){
-       if(err) throw err
-       console.log("Insert Success")
-       client.close();
-   });
-   
-
-   //client.close();
-
-});
-*/
 
 const categoryList = [];
 categoryList.push("League of Legends")
@@ -74,7 +53,6 @@ categoryList.push("Minecraft")
 async function scrape() {
    const browser = await puppeteer.launch({}) //create a new web browser instance
    const page = await browser.newPage() //create page variable that will be used to navigate to Twitch.tv web page
-   const readStream = fs.createReadStream('urlFile.txt') //creating a read stream from a given input file
    const uri = "mongodb+srv://webscraper:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority"; //connection URI to database
    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); //create instance of MongoClient using our URI
 
@@ -93,22 +71,6 @@ async function scrape() {
    */
    
    
-  
-   //Truncating the output file to delete previous data
-   //Using asynchronous writeFile function
-   /*
-   fs.writeFile('output.txt', '', err => {if (err){ 
-      throw err} console.log(err)})
-         
-       
-     
-   //Reading from the input file one URL at a time
-   //Use crlfDelay to allow program to recognize newline and carriage return
-   const readLine = readline.createInterface({
-      input: readStream,
-      crlfDelay : Infinity
-   })
-   */
 
 
    var projection = {_id: 1, URL: 1}
@@ -207,38 +169,7 @@ async function scrape() {
 
 
        
-       //Writing the JSON to the output file
-       //New entries will be appended to the file using newline
-       /*
-       fs.writeFile('output.txt', myJSON + '\n', {flag: 'a'}, err => {if (err){ 
-         throw err} console.log(err)})
-      */
-         /*
-         client.connect(function (err){
-
-            if(err){
-               console.error("Connection Error");
-            }else{
-               console.error("Connected");
-
-
-               
-               testCollection.insertOne(data, function (err){
-                  if(err){
-                     console.log("Insert error")
-                     
-                  }else{
-                     console.log("insert success")
-                  }
-                  
-               });
-               
-               
-            }
-            client.close(); //close the MongoClient instance
-         
-         });
-         */
+       
          
 
          
