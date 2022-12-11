@@ -162,6 +162,25 @@ async function scrape() {
    
       } catch (error){
 
+        console.log("Error:", "URL:", link, ",Stream is not live");
+            client.connect(function(err){ //connect to the database
+                if(err) throw err; //if we can't connect then throw error
+        
+
+
+                database.collection("URLCollection").deleteOne(data, function(err){
+                    if(err) throw err
+                    console.log("Delete Success")
+                    client.close();
+
+                });
+                
+                
+        
+                //client.close();
+        
+              });
+
 
 
       }
