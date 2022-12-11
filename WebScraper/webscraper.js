@@ -111,8 +111,8 @@ async function scrape() {
    */
 
 
-   var projection = {_id: 0, URL: 1}
-   var cursor = database.collection("URLCollection").find({}).project(projection)
+   var projection = {_id: 1, URL: 1}
+   var cursor = database.collection("VerifiedURLCollection").find({}).project(projection)
 
 
    //For each URL in the URLCollection of the Database, scrape the stream properties we need and insert them into a Collection in the Database
