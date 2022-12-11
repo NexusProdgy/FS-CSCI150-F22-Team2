@@ -31,13 +31,14 @@ async function scrape() {
    
 
 
-   var projection = {_id: 0, URL: 1}
+   var projection = {_id: 1, URL: 1}
    var cursor = database.collection("URLCollection").find({}).project(projection)
 
 
    //For each URL in the URLCollection of the Database, scrape the stream properties we need and insert them into a Collection in the Database
    for await (const item of cursor){
       var link = item.URL //the URL from the input file becomes the link that the variable page uses to navigate
+      var data = {URL: link}
 
       //Try catch block
       //If the streamer is not live then return an error
@@ -55,6 +56,8 @@ async function scrape() {
 
        var element2 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-1xcs6mc-0.chGnpF > div.Layout-sc-1xcs6mc-0.bMvWIE > div.Layout-sc-1xcs6mc-0.kFQuPx > div > div.Layout-sc-1xcs6mc-0.fKljfb > div.Layout-sc-1xcs6mc-0.cTzewX > div:nth-child(1) > div > p > span")
        var viewCount = await page.evaluate(element2 => element2.textContent, element2)
+
+       console.log(item);
 
        if(categoryList.includes(category)){
 
@@ -79,13 +82,6 @@ async function scrape() {
             console.log(link) //print the stream URL to the console
             console.log(streamerName) //print the streamer name to the console
 
-            //var data = {category: category, title: streamTitle, URL: link, name: streamerName}
-
-            var data = {URL: link}
-
-
-            //var dbcategory = category.split(" ").join("");
-
 
 
             client.connect(function(err){ //connect to the database
@@ -96,7 +92,15 @@ async function scrape() {
                 database.collection("VerifiedURLCollection").insertOne(data, function(err){ //insert the stream properties into the database
                     if(err) throw err //if we can't insert then throw error
                     console.log("Insert Success") //the insert was successful
-                    client.close(); //close the connection to the database
+                    //client.close(); //close the connection to the database
+                });
+
+
+                database.collection("URLCollection").deleteOne(data, function(err){
+                    if(err) throw err
+                    console.log("Delete Success")
+                    client.close();
+
                 });
                 
                 
@@ -111,6 +115,23 @@ async function scrape() {
         }else{
 
             console.log("Error:", "URL:", link, ",View Count:", viewCount, "Is not within range");
+            client.connect(function(err){ //connect to the database
+                if(err) throw err; //if we can't connect then throw error
+        
+
+
+                database.collection("URLCollection").deleteOne(data, function(err){
+                    if(err) throw err
+                    console.log("Delete Success")
+                    client.close();
+
+                });
+                
+                
+        
+                //client.close();
+        
+              });
 
         }
         
@@ -118,6 +139,23 @@ async function scrape() {
        }else{
 
          console.log("Error:", "URL:", link, ",Category:", category, "Is not in database");
+            client.connect(function(err){ //connect to the database
+                if(err) throw err; //if we can't connect then throw error
+        
+
+
+                database.collection("URLCollection").deleteOne(data, function(err){
+                    if(err) throw err
+                    console.log("Delete Success")
+                    client.close();
+
+                });
+                
+                
+        
+                //client.close();
+        
+              });
        }
 
          
