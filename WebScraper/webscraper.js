@@ -268,7 +268,7 @@ async function scrape() {
 
    browser.close() //close the web browser instance
    await cursor.close(); //close the cursor when we are done with it
-   client.close(); //close the MongoClinet Instance
+   //client.close(); //close the MongoClinet Instance
    //client.close(); //close the MongoClient instance
 
 
