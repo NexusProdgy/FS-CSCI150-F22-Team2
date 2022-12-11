@@ -138,6 +138,9 @@ async function scrape() {
        var element3 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-1xcs6mc-0.chGnpF > div.Layout-sc-1xcs6mc-0.bMvWIE > div.Layout-sc-1xcs6mc-0.elJsHR > div > div:nth-child(2) > div > div > div.Layout-sc-1xcs6mc-0.dlwAAo > a", {timeout: 2900})
        var category = await page.evaluate(element3 => element3.textContent, element3)
 
+       var element2 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-1xcs6mc-0.chGnpF > div.Layout-sc-1xcs6mc-0.bMvWIE > div.Layout-sc-1xcs6mc-0.kFQuPx > div > div.Layout-sc-1xcs6mc-0.fKljfb > div.Layout-sc-1xcs6mc-0.cTzewX > div:nth-child(1) > div > p > span")
+       var viewCount = await page.evaluate(element2 => element2.textContent, element2)
+
        if(categoryList.includes(category)){
 
          console.log("URL:", link,",Category:", category, "Is in database");
@@ -151,7 +154,7 @@ async function scrape() {
 
 
          //console.log(isLive)
-         //console.log(viewCount)
+         console.log(viewCount)
          console.log(category) //print the stream category to the console
          console.log(streamTitle) //print the stream title to the console
          console.log(link) //print the stream URL to the console
