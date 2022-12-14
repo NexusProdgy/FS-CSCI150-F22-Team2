@@ -1,3 +1,19 @@
+//Ricardo Cabrera
+//CSCI 150
+//Project Streamer Discoverability
+
+//Description:
+//This program allows the user to read all of the URL links that are stored in the URLCollection of the database
+//It was used to test if we could successfully insert URL links from our website
+
+//The program performs the database read thorugh an asynchronous function called read()
+//To run this program enter the command: 
+/*
+node database-readURL.js
+*/
+//The program will then print out each document of the URLCollection
+
+
 const {MongoClient} = require('mongodb') //include mongodb module
 
 //username: webscraper
@@ -7,60 +23,26 @@ const {MongoClient} = require('mongodb') //include mongodb module
 const uri = "mongodb+srv://webscraper:csci150@csci150-project-streame.chizztp.mongodb.net/?retryWrites=true&w=majority"; //connection URI to database
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); //create instance of MongoClient using our URI
 const database = client.db("TestDatabase"); //the database we are connecting to
-var testCollection = database.collection("URLCollection")
 
 
-const categoryList = [];
-categoryList.push("League of Legends")
-categoryList.push("VALORANT")
-categoryList.push("Overwatch 2")
-categoryList.push("Just Chatting")
-
-
-
-
+//Read function
 async function read(){
 
-
-
-
-    /*
-    client.connect(function(err){ //connecting the database
-        if(err) throw err; //if can't connect then throw error
-
-        database.collection("TestCollection").find({}).toArray(function(err,item){
-            if(err) throw err
-            console.log(item);
-            client.close();
-        });
-
-
-    });
-    */
-
-    /*
-
-    database.collection("TestCollection").find({}).toArray(function(err,item){
-        if(err) throw err
-        console.log(item);
-        client.close();
-    });
-    */
    
-   var projection = {_id: 0}
-   var cursor = database.collection("URLCollection").find({}).project(projection)
-   var data
+   var projection = {_id: 0} //we don't need to display the _id field of the document
+   var cursor = database.collection("URLCollection").find({}).project(projection) //creat a cursor that points to the URLCollection in the database
+   var data //the URL Link we will display
 
-   for await(const item of cursor){
+   for await(const item of cursor){ //get each document that is stored in the collection
 
-        data = item
-        console.log(data);
+        data = item //the item is the data we want to display
+        console.log(data); //print the URL Link to the terminal
 
    }
 
 
-   await cursor.close();
-   client.close();
+   await cursor.close(); //close the cursor
+   client.close(); //close the connection to the database
 
 
        
@@ -70,4 +52,4 @@ async function read(){
 };
 
 
-read();
+read(); //call the read function

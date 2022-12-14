@@ -1,3 +1,21 @@
+//Ricardo Cabrera
+//CSCI 150
+//Project Streamer Discoverability
+
+//Description:
+//This program is the main web scraper that is used to gather data from a Twitch stream
+//It gets the live status, live viewer count, category, title, and streamer name
+
+//It will only send the category, title, URL, and streamer name to the database
+//This is the data that will be displayed by our website
+
+//The program performs the data gathering through an asynchronous function called scrape()
+//To run this program enter the command: 
+/*
+node webscraper.js 
+*/
+
+
 //Adding External Node.js Modules
 const puppeteer = require('puppeteer') //include puppeteer module
 const {MongoClient} = require('mongodb') //include mongodb module
@@ -7,40 +25,9 @@ const {MongoClient} = require('mongodb') //include mongodb module
 
 
 
-//Connect to database using basic if statement
-/*
-client.connect(function (err){
-
-   if(err){
-      console.error("Connection Error");
-   }else{
-      console.error("Connected");
-   }
-
-});
-
-client.close();
-*/
 
 
-
-//Connect to database using try catch block
-/*
-try {
-   client.connect();
-
-
-} catch (err){
-   console.error("Connection Error");
-};
-
-client.close();
-*/
-
-
-
-
-const categoryList = [];
+const categoryList = []; //the categories that are displayed on our webiste
 categoryList.push("League of Legends")
 categoryList.push("VALORANT")
 categoryList.push("Overwatch 2")
@@ -57,24 +44,12 @@ async function scrape() {
    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true }); //create instance of MongoClient using our URI
 
    const database = client.db("TestDatabase"); //database we are connecting to
-   var testCollection = database.collection("TestCollection")
-   /*
-   client.connect(function (err){
-
-      if(err){
-         console.error("Connection Error");
-      }else{
-         console.error("Connected");
-      }
-   
-   });
-   */
    
    
 
 
    var projection = {_id: 1, URL: 1}
-   var cursor = database.collection("VerifiedURLCollection").find({}).project(projection)
+   var cursor = database.collection("VerifiedURLCollection").find({}).project(projection) //create a cursor that points to the VerifiedURLCollection of the database
 
 
    //For each URL in the URLCollection of the Database, scrape the stream properties we need and insert them into a Collection in the Database
@@ -99,21 +74,21 @@ async function scrape() {
        //Maximum timeout time is N seconds
        //If more than N seconds has passed, that means the streamer is not live -> error
        var element3 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-1xcs6mc-0.chGnpF > div.Layout-sc-1xcs6mc-0.bMvWIE > div.Layout-sc-1xcs6mc-0.elJsHR > div > div:nth-child(2) > div > div > div.Layout-sc-1xcs6mc-0.dlwAAo > a", {timeout: 5000})
-       var category = await page.evaluate(element3 => element3.textContent, element3)
+       var category = await page.evaluate(element3 => element3.textContent, element3) //get the stream category
 
        var element2 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-1xcs6mc-0.chGnpF > div.Layout-sc-1xcs6mc-0.bMvWIE > div.Layout-sc-1xcs6mc-0.kFQuPx > div > div.Layout-sc-1xcs6mc-0.fKljfb > div.Layout-sc-1xcs6mc-0.cTzewX > div:nth-child(1) > div > p > span")
-       var viewCount = await page.evaluate(element2 => element2.textContent, element2)
+       var viewCount = await page.evaluate(element2 => element2.textContent, element2) //get the live viewer count
 
-       if(categoryList.includes(category)){
+       if(categoryList.includes(category)){ ////check if the stream category is one that is currently on our website
 
          console.log("URL:", link,",Category:", category, "Is in database");
          //Scraping the stream title
          var element4 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-1xcs6mc-0.chGnpF > div.Layout-sc-1xcs6mc-0.bMvWIE > div.Layout-sc-1xcs6mc-0.elJsHR > div > div.Layout-sc-1xcs6mc-0.BcKcx > h2")
-         var streamTitle = await page.evaluate(element4 => element4.textContent, element4)
+         var streamTitle = await page.evaluate(element4 => element4.textContent, element4) //get the stream title
 
          //Scraping the streamer name
          var element0 = await page.waitForSelector("#live-channel-stream-information > div > div > div > div > div.Layout-sc-1xcs6mc-0.chGnpF > div.Layout-sc-1xcs6mc-0.wDxTQ.metadata-layout__support > div.Layout-sc-1xcs6mc-0.beAYWq > a > h1")
-         var streamerName = await page.evaluate(element0 => element0.textContent, element0)
+         var streamerName = await page.evaluate(element0 => element0.textContent, element0) //get the streamer name
 
 
          //console.log(isLive)
@@ -123,13 +98,13 @@ async function scrape() {
          console.log(link) //print the stream URL to the console
          console.log(streamerName) //print the streamer name to the console
 
-         //obj = {category: category, title: streamTitle, URL: link, name: streamerName} //JSON format object
 
-         var data = {category: category, title: streamTitle, URL: link, name: streamerName}
 
-         //myJSON = JSON.stringify(obj) //creating the JSON to be sent to the database
+         var data = {category: category, title: streamTitle, URL: link, name: streamerName} //the stream data that will be sent to the database. in JSON format
 
-         var dbcategory = category.split(" ").join("");
+
+
+         var dbcategory = category.split(" ").join(""); //the database Collection we will insert the data into
 
          client.connect(function(err){ //connect to the database
             if(err) throw err; //if we can't connect then throw error
@@ -143,10 +118,10 @@ async function scrape() {
             });
 
 
-            database.collection("VerifiedURLCollection").deleteOne(dblink, function(err){
-               if(err) throw err
-               console.log("Delete Success")
-               client.close();
+            database.collection("VerifiedURLCollection").deleteOne(dblink, function(err){ //remove the URL from the VerifiedURLCollection
+               if(err) throw err //if we can't remove then throw error
+               console.log("Delete Success") //the removal was successful
+               client.close(); //close the connection to the database
 
            });
             
@@ -156,7 +131,7 @@ async function scrape() {
     
           });
 
-       }else{
+       }else{ //else the stream category is one that is not on our website
 
          console.log("Error:", "URL:", link, ",Category:", category, "Is not in database");
          database.collection("VerifiedURLCollection").deleteOne(dblink, function(err){
@@ -174,7 +149,7 @@ async function scrape() {
 
          
    
-      } catch (error){
+      } catch (error){ //if the try catch block trows an error then that means the streamer is not live
          console.log("Error:", "URL:", link, ",Stream is not live");
          database.collection("VerifiedURLCollection").deleteOne(dblink, function(err){
             if(err) throw err
